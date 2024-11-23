@@ -1,1 +1,2 @@
-addSbtPlugin("org.jetbrains.scala" % "sbt-ide-settings" % "1.1.2")
+
+resolvers += "Akka library repository".at("https://repo.akka.io/maven")
