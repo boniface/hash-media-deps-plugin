@@ -1,6 +1,5 @@
-ThisBuild / scalaVersion := "2.12.20"
-ThisBuild / crossScalaVersions := Seq("2.12.20", "2.13.15")
-ThisBuild / version := "0.0.4"
+ThisBuild / scalaVersion := "2.13.15"
+ThisBuild / version := "0.0.5"
 ThisBuild / organization := "com.github.boniface"
 ThisBuild / organizationName := "boniface"
 
