@@ -296,9 +296,24 @@ object MediaDependencies {
     val akkaGrpc = "2.4.3"
     val tapirVersion = "1.11.9"
   }
-  val all: Seq[ModuleID] = Circe.all ++ Zio.all ++ ScalaTest.all ++
-    ZioTest.all ++ TestContainers.all ++ Airframe.all ++ Logging.all ++
-    Cassandra.all ++ PostgresQL.all ++ Chimney.all ++ Akka.all ++
-    AkkaProjection.all ++ AkkaHttp.all ++ AkkaTestKit.all ++ TapirHttp4s.all ++
-    TapirTest.all ++ Grpc.all ++ JsoupRomeFeed.all
+  val all: Seq[ModuleID] =
+    Circe.all ++
+      Logging.all ++
+      Cassandra.all ++
+      PostgresQL.all++
+      TestContainers.all ++
+      Akka.all++
+      AkkaProjection.all ++
+      AkkaHttp.all ++
+      AkkaTestKit.all ++
+      TapirTest.all ++
+      JsoupRomeFeed.all
+//      Zio.all ++
+//      ScalaTest.all
+//      ZioTest.all
+//      Airframe.all ++
+//      Chimney.all ++
+//      TapirHttp4s.all ++
+//      Grpc.all ++
+
 }
