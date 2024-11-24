@@ -1,4 +1,26 @@
+package com.github.boniface
+
 import sbt.*
+import sbt.Keys.*
+
+import scala.collection.Seq
+
+object MediaDependenciesPlugin extends AutoPlugin {
+
+  override def trigger: PluginTrigger = allRequirements
+
+  object autoImport {
+    val mediaDependencies: Seq[ModuleID] = MediaDependencies.all
+
+  }
+
+  import autoImport.*
+
+  override def projectSettings: Seq[Setting[_]] = {
+    Seq(libraryDependencies ++= mediaDependencies)
+  }
+}
+
 
 object MediaDependencies {
 
@@ -220,7 +242,7 @@ object MediaDependencies {
       "tapir-swagger-ui-bundle" % Version.tapirVersion
     private val tapirJsonCirce = "com.softwaremill.sttp.tapir" %%
       "tapir-json-circe" % Version.tapirVersion
-    private val emberServer = "org.http4s" %% "http4s-ember-server" % "0.23.28"
+    private val emberServer = "org.http4s" %% "http4s-ember-server" % "0.23.29"
     val all: Seq[ModuleID] = Seq(
       tapirCore,
       tapirHttp4sServer,
@@ -285,7 +307,6 @@ object MediaDependencies {
     val googleProto = "4.28.3"
     val chimney = "1.5.0"
     val airframeVersion = "24.11.0"
-    val mockito = "5.14.2"
     val mockitoScala = "1.17.37"
     val cassandraPersistence = "1.2.1"
     val akkaProjection = "1.5.4"
@@ -296,24 +317,10 @@ object MediaDependencies {
     val akkaGrpc = "2.4.3"
     val tapirVersion = "1.11.9"
   }
-  val all: Seq[ModuleID] =
-    Circe.all ++
-      Logging.all ++
-      Cassandra.all ++
-      PostgresQL.all++
-      TestContainers.all ++
-      Akka.all++
-      AkkaProjection.all ++
-      AkkaHttp.all ++
-      AkkaTestKit.all ++
-      TapirTest.all ++
-      JsoupRomeFeed.all
-//      Zio.all ++
-//      ScalaTest.all
-//      ZioTest.all
-//      Airframe.all ++
-//      Chimney.all ++
-//      TapirHttp4s.all ++
-//      Grpc.all ++
+  val all: Seq[ModuleID] = Circe.all ++ Logging.all ++ Cassandra.all ++
+    PostgresQL.all ++ TestContainers.all ++ Akka.all ++ AkkaProjection.all ++
+    AkkaHttp.all ++ AkkaTestKit.all ++ TapirTest.all ++ JsoupRomeFeed.all ++
+    Zio.all ++ ScalaTest.all ++ ZioTest.all
+  Airframe.all ++ Chimney.all ++ TapirHttp4s.all ++ Grpc.all
 
 }
