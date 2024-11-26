@@ -1,8 +1,7 @@
 import sbt.Keys.excludeDependencies
 
 ThisBuild / scalaVersion := "2.13.15"
-ThisBuild / crossScalaVersions := Seq("2.12.20", "2.13.15")
-ThisBuild / version := "0.0.11"
+ThisBuild / version := "0.0.12"
 ThisBuild / organization := "com.github.boniface"
 ThisBuild / organizationName := "boniface"
 ThisBuild / versionScheme := Some("early-semver")
@@ -20,12 +19,9 @@ ThisBuild / scmInfo := Some(ScmInfo(
   "scm:git:git@github.com:boniface/hash-media-deps-plugin.git",
 ))
 
-crossSbtVersions := Seq("2.12.20", "2.13.14")
-
-
 lazy val dependenciesBundle = (project in file(".")).settings(
   name := "hash-media-deps-plugin",
-  libraryDependencies ++= MediaDependencies.all,
+  libraryDependencies ++= Dependencies.all,
   libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.19" % Test,
   // Exclude transitive Scala 2.12 dependencies
   excludeDependencies ++= Seq(
