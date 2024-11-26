@@ -1,6 +1,6 @@
 import sbt.*
 
-object MediaDependencies {
+object Dependencies {
 
   private val TestScope = Test
 
@@ -297,9 +297,9 @@ object MediaDependencies {
     val tapirVersion = "1.11.9"
   }
   val all: Seq[ModuleID] =
-    (Circe.all ++ Zio.all ++ ScalaTest.all ++ ZioTest.all ++
+    Circe.all ++ Zio.all ++ ScalaTest.all ++ ZioTest.all ++
       TestContainers.all ++ Airframe.all ++ Logging.all ++ Cassandra.all ++
       PostgresQL.all ++ Chimney.all ++ Akka.all ++ AkkaProjection.all ++
       AkkaHttp.all ++ AkkaTestKit.all ++ TapirHttp4s.all ++ TapirTest.all ++
-      Grpc.all ++ JsoupRomeFeed.all)
+      Grpc.all ++ JsoupRomeFeed.all
 }
