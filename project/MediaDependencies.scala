@@ -220,7 +220,7 @@ object MediaDependencies {
       "tapir-swagger-ui-bundle" % Version.tapirVersion
     private val tapirJsonCirce = "com.softwaremill.sttp.tapir" %%
       "tapir-json-circe" % Version.tapirVersion
-    private val emberServer = "org.http4s" %% "http4s-ember-server" % "0.23.28"
+    private val emberServer = "org.http4s" %% "http4s-ember-server" % "0.23.29"
     val all: Seq[ModuleID] = Seq(
       tapirCore,
       tapirHttp4sServer,
@@ -296,9 +296,10 @@ object MediaDependencies {
     val akkaGrpc = "2.4.3"
     val tapirVersion = "1.11.9"
   }
-  val all: Seq[ModuleID] = Circe.all ++ Zio.all ++ ScalaTest.all ++
-    ZioTest.all ++ TestContainers.all ++ Airframe.all ++ Logging.all ++
-    Cassandra.all ++ PostgresQL.all ++ Chimney.all ++ Akka.all ++
-    AkkaProjection.all ++ AkkaHttp.all ++ AkkaTestKit.all ++ TapirHttp4s.all ++
-    TapirTest.all ++ Grpc.all ++ JsoupRomeFeed.all
+  val all: Seq[ModuleID] =
+    (Circe.all ++ Zio.all ++ ScalaTest.all ++ ZioTest.all ++
+      TestContainers.all ++ Airframe.all ++ Logging.all ++ Cassandra.all ++
+      PostgresQL.all ++ Chimney.all ++ Akka.all ++ AkkaProjection.all ++
+      AkkaHttp.all ++ AkkaTestKit.all ++ TapirHttp4s.all ++ TapirTest.all ++
+      Grpc.all ++ JsoupRomeFeed.all)
 }
