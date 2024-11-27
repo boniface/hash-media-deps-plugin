@@ -1,4 +1,4 @@
-# Hash Media Dependencies
+# Scala Project Dependencies
 
 [![Version](https://img.shields.io/github/v/release/boniface/hash-media-deps-plugin)](https://github.com/boniface/hash-media-deps-plugin/releases)
 [![Build Status](https://img.shields.io/github/actions/workflow/status/boniface/hash-media-deps-plugin/build.yml)](https://github.com/boniface/hash-media-deps-plugin/actions)
@@ -8,8 +8,8 @@
 
 ## Overview
 
-The `hash-media-deps-plugin` is an SBT plugin designed to manage and streamline the dependencies 
-for media-related projects. It provides a centralized way to define and manage dependencies, 
+The `hash-media-deps-plugin` is a project  designed to manage and streamline the dependencies 
+for some Scala projects I work on. It provides a centralized way to define and manage dependencies, 
 ensuring consistency and ease of maintenance.
 
 ## Features
@@ -21,7 +21,7 @@ ensuring consistency and ease of maintenance.
 
 ## Usage
 
-In your `build.sbt` file, you can reference the dependencies provided by the plugin:
+In your `build.sbt` file, you can reference the dependencies provided by the project:
 
 ```scala
 ThisBuild / resolvers ++= Seq(
@@ -34,16 +34,12 @@ lazy val root = (project in file("."))
   .settings(
     name := "project-name",
     libraryDependencies += "com.github.boniface" %% "hash-media-deps-plugin" % "x.y.z",
-    excludeDependencies ++= Seq(
-      ExclusionRule("org.scala-lang.modules", "scala-collection-compat_2.12"),
-      ExclusionRule("org.scala-lang.modules", "scala-xml_2.12"),
-    ),
   )
 ```
 
 ## Dependencies
 
-The plugin includes a variety of dependencies, organized into different categories such as Akka, Tapir, ZIO, and more. Here are some examples:
+The project  includes a variety of dependencies, organized into different categories such as Akka, Tapir, ZIO, and more. Here are some examples:
 
 - **Akka**:
   - `akka-actor-typed`
