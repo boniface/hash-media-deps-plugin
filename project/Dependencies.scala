@@ -29,9 +29,16 @@ object Dependencies {
       Version.mockitoScala % TestScope
     private val mockitoScalaTest = "org.mockito" %% "mockito-scala-scalatest" %
       Version.mockitoScala % TestScope
-
-    val all: Seq[ModuleID] =
-      Seq(scalaTest, scalaCheck, logback, mockitoScala, mockitoScalaTest)
+    private val scalaCheck1_18 = "org.scalatestplus" %% "scalacheck-1-18" %
+      Version.scalaCheckPlusV % TestScope
+    val all: Seq[ModuleID] = Seq(
+      scalaTest,
+      scalaCheck,
+      logback,
+      mockitoScala,
+      mockitoScalaTest,
+      scalaCheck1_18,
+    )
   }
 
   object ZioTest {
@@ -94,7 +101,7 @@ object Dependencies {
   }
 
   object PostgresQL {
-    private val postgres = "org.postgresql" % "postgresql" % "42.7.4"
+    private val postgres = "org.postgresql" % "postgresql" % Version.postgresQLV
     val all: Seq[ModuleID] = Seq(postgres)
   }
 
@@ -220,7 +227,8 @@ object Dependencies {
       "tapir-swagger-ui-bundle" % Version.tapirVersion
     private val tapirJsonCirce = "com.softwaremill.sttp.tapir" %%
       "tapir-json-circe" % Version.tapirVersion
-    private val emberServer = "org.http4s" %% "http4s-ember-server" % "0.23.29"
+    private val emberServer = "org.http4s" %% "http4s-ember-server" %
+      Version.http4sV
     val all: Seq[ModuleID] = Seq(
       tapirCore,
       tapirHttp4sServer,
@@ -266,8 +274,23 @@ object Dependencies {
     val all: Seq[ModuleID] = Seq(jsoup, romeTools)
   }
 
+  object ScalaPb {
+    private val scalapb = "com.thesamet.scalapb" %% "scalapb-runtime" %
+      Version.scalaPbV
+    private val scalapbGrpc = "com.thesamet.scalapb" %% "scalapb-runtime-grpc" %
+      Version.scalaPbV
+    private val scalapbJson4s = "com.thesamet.scalapb" %% "scalapb-json4s" %
+      Version.scalaPBJsonV
+    val all: Seq[ModuleID] = Seq(scalapb, scalapbGrpc, scalapbJson4s)
+  }
+
   object Version {
-    val jsoupV = "1.18.1"
+    val scalaPbV = "0.11.17"
+    val scalaPBJsonV = "0.12.1"
+    val scalaCheckPlusV = "3.2.19.0"
+    val http4sV = "0.23.29"
+    val postgresQLV = "42.7.4"
+    val jsoupV = "1.18.2"
     val romeToolsV = "2.1.0"
     val circe = "0.14.10"
     val scalaTest = "3.2.19"
@@ -281,8 +304,8 @@ object Dependencies {
     val fury = "0.9.0"
     val akka = "2.9.5"
     val akkaHttp = "10.6.3"
-    val gRPC = "1.68.1"
-    val googleProto = "4.28.3"
+    val gRPC = "1.68.2"
+    val googleProto = "4.29.0"
     val chimney = "1.5.0"
     val airframeVersion = "24.11.0"
     val mockito = "5.14.2"
@@ -296,10 +319,9 @@ object Dependencies {
     val akkaGrpc = "2.4.3"
     val tapirVersion = "1.11.9"
   }
-  val all: Seq[ModuleID] =
-    Circe.all ++ Zio.all ++ ScalaTest.all ++ ZioTest.all ++
-      TestContainers.all ++ Airframe.all ++ Logging.all ++ Cassandra.all ++
-      PostgresQL.all ++ Chimney.all ++ Akka.all ++ AkkaProjection.all ++
-      AkkaHttp.all ++ AkkaTestKit.all ++ TapirHttp4s.all ++ TapirTest.all ++
-      Grpc.all ++ JsoupRomeFeed.all
+  val all: Seq[ModuleID] = Circe.all ++ Zio.all ++ ScalaTest.all ++
+    ZioTest.all ++ TestContainers.all ++ Airframe.all ++ Logging.all ++
+    Cassandra.all ++ PostgresQL.all ++ Chimney.all ++ Akka.all ++
+    AkkaProjection.all ++ AkkaHttp.all ++ AkkaTestKit.all ++ TapirHttp4s.all ++
+    TapirTest.all ++ Grpc.all ++ JsoupRomeFeed.all ++ ScalaPb.all
 }

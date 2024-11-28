@@ -9,7 +9,7 @@
 ## Overview
 
 The `hash-media-deps-plugin` is a project  designed to manage and streamline the dependencies 
-for some Scala projects I work on. It provides a centralized way to define and manage dependencies, 
+for some Scala projects I work on. It's a centralized way to define and manage dependencies, 
 ensuring consistency and ease of maintenance.
 
 ## Features
@@ -33,8 +33,15 @@ ThisBuild / resolvers ++= Seq(
 lazy val root = (project in file("."))
   .settings(
     name := "project-name",
-    libraryDependencies += "com.github.boniface" %% "hash-media-deps-plugin" % "x.y.z",
-  )
+    libraryDependencies += "com.github.boniface" %% "hash-media-deps-plugin" % "x.y.z")
+
+credentials += Credentials(
+  "GitHub Package Registry",
+  "maven.pkg.github.com",
+  "boniface",
+  sys.env.getOrElse("GITHUB_TOKEN", ""),
+)
+
 ```
 
 ## Dependencies
@@ -156,5 +163,5 @@ Contributions, well... nothing much actually, but they are welcome, anyway! Plea
 
 ## License
 
-This project is licensed under the MIT License. See the `LICENSE` file for details.
+This project is licensed under the MIT License - see the [LICENSE](https://opensource.org/licenses/MIT) file for details.
 ```
