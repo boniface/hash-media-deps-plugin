@@ -2,7 +2,6 @@ import sbt.*
 
 object Dependencies {
 
-  private val TestScope = Test
 
   object Circe {
     private val circeCore = "io.circe" %% "circe-core" % Version.circe
@@ -19,18 +18,17 @@ object Dependencies {
   }
 
   object ScalaTest {
-    private val scalaTest = "org.scalatest" %% "scalatest" % Version.scalaTest %
-      TestScope
+    private val scalaTest = "org.scalatest" %% "scalatest" % Version.scalaTest
     private val scalaCheck = "org.scalacheck" %% "scalacheck" %
-      Version.scalaCheck % TestScope
+      Version.scalaCheck
     private val logback = "ch.qos.logback" % "logback-classic" %
-      Version.logbackV % TestScope
+      Version.logbackV
     private val mockitoScala = "org.mockito" %% "mockito-scala" %
-      Version.mockitoScala % TestScope
+      Version.mockitoScala
     private val mockitoScalaTest = "org.mockito" %% "mockito-scala-scalatest" %
-      Version.mockitoScala % TestScope
+      Version.mockitoScala
     private val scalaCheck1_18 = "org.scalatestplus" %% "scalacheck-1-18" %
-      Version.scalaCheckPlusV % TestScope
+      Version.scalaCheckPlusV
     val all: Seq[ModuleID] = Seq(
       scalaTest,
       scalaCheck,
@@ -42,28 +40,26 @@ object Dependencies {
   }
 
   object ZioTest {
-    private val zioTest = "dev.zio" %% "zio-test" % Version.zio % TestScope
-    private val zioTestSbt = "dev.zio" %% "zio-test-sbt" % Version.zio %
-      TestScope
-    private val zioMagnolia = "dev.zio" %% "zio-test-magnolia" % Version.zio %
-      TestScope
+    private val zioTest = "dev.zio" %% "zio-test" % Version.zio
+    private val zioTestSbt = "dev.zio" %% "zio-test-sbt" % Version.zio
+    private val zioMagnolia = "dev.zio" %% "zio-test-magnolia" % Version.zio
     private val zioHttpTestKit = "dev.zio" %% "zio-http-testkit" %
-      Version.zioHttp % TestScope
+      Version.zioHttp
     val all: Seq[ModuleID] =
       Seq(zioTest, zioTestSbt, zioHttpTestKit, zioMagnolia)
   }
 
   object TestContainers {
     private val scalaTest = "com.dimafeng" %% "testcontainers-scala-scalatest" %
-      Version.testContainers % TestScope
+      Version.testContainers
     private val cassandra = "com.dimafeng" %% "testcontainers-scala-cassandra" %
-      Version.testContainers % TestScope
+      Version.testContainers
     private val kafka = "com.dimafeng" %% "testcontainers-scala-kafka" %
-      Version.testContainers % TestScope
+      Version.testContainers
     private val cockroachdb = "com.dimafeng" %%
-      "testcontainers-scala-cockroachdb" % Version.testContainers % TestScope
+      "testcontainers-scala-cockroachdb" % Version.testContainers
     private val redis = "com.dimafeng" %% "testcontainers-scala-redis" %
-      Version.testContainers % TestScope
+      Version.testContainers
     val all: Seq[ModuleID] = Seq(scalaTest, cassandra, kafka, cockroachdb, redis)
   }
 
@@ -197,13 +193,13 @@ object Dependencies {
 
   object AkkaTestKit {
     private val akkaTestKit = "com.typesafe.akka" %%
-      "akka-actor-testkit-typed" % Version.akka % TestScope
+      "akka-actor-testkit-typed" % Version.akka
     private val akkaStreamTestKit = "com.typesafe.akka" %%
-      "akka-stream-testkit" % Version.akka % TestScope
+      "akka-stream-testkit" % Version.akka
     private val akkaPersistenceTestKit = "com.typesafe.akka" %%
-      "akka-persistence-testkit" % Version.akka % TestScope
+      "akka-persistence-testkit" % Version.akka
     private val akkaHttpTestKit = "com.typesafe.akka" %% "akka-http-testkit" %
-      Version.akkaHttp % TestScope
+      Version.akkaHttp
     val all: Seq[ModuleID] = Seq(
       akkaTestKit,
       akkaStreamTestKit,
@@ -243,9 +239,9 @@ object Dependencies {
 
   object TapirTest {
     private val tapirSttpStubServer = "com.softwaremill.sttp.tapir" %%
-      "tapir-sttp-stub-server" % Version.tapirVersion % TestScope
+      "tapir-sttp-stub-server" % Version.tapirVersion
     private val tapirSttpClient = "com.softwaremill.sttp.client3" %% "circe" %
-      "3.10.1" % TestScope
+      "3.10.1"
     val all: Seq[ModuleID] = Seq(tapirSttpStubServer, tapirSttpClient)
   }
 
