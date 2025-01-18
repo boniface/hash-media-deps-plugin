@@ -34,10 +34,6 @@ lazy val root = (project in file("."))
   .settings(
     name := "project-name",
     libraryDependencies += "com.github.boniface" %% "hash-media-deps-plugin" % "x.y.z",
-    excludeDependencies ++= Seq(
-      ExclusionRule("org.scala-lang.modules", "scala-collection-compat_2.12"),
-      ExclusionRule("org.scala-lang.modules", "scala-xml_2.12"),
-    ),
   )
 ```
 

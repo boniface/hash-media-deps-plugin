@@ -94,7 +94,7 @@ object Dependencies {
   }
 
   object PostgresQL {
-    private val postgres = "org.postgresql" % "postgresql" % "42.7.4"
+    private val postgres = "org.postgresql" % "postgresql" % "42.7.5"
     val all: Seq[ModuleID] = Seq(postgres)
   }
 
@@ -220,7 +220,7 @@ object Dependencies {
       "tapir-swagger-ui-bundle" % Version.tapirVersion
     private val tapirJsonCirce = "com.softwaremill.sttp.tapir" %%
       "tapir-json-circe" % Version.tapirVersion
-    private val emberServer = "org.http4s" %% "http4s-ember-server" % "0.23.29"
+    private val emberServer = "org.http4s" %% "http4s-ember-server" % "0.23.30"
     val all: Seq[ModuleID] = Seq(
       tapirCore,
       tapirHttp4sServer,
@@ -237,7 +237,7 @@ object Dependencies {
     private val tapirSttpStubServer = "com.softwaremill.sttp.tapir" %%
       "tapir-sttp-stub-server" % Version.tapirVersion % TestScope
     private val tapirSttpClient = "com.softwaremill.sttp.client3" %% "circe" %
-      "3.10.1" % TestScope
+      "3.10.2" % TestScope
     val all: Seq[ModuleID] = Seq(tapirSttpStubServer, tapirSttpClient)
   }
 
@@ -267,24 +267,24 @@ object Dependencies {
   }
 
   object Version {
-    val jsoupV = "1.18.1"
+    val jsoupV = "1.18.3"
     val romeToolsV = "2.1.0"
     val circe = "0.14.10"
     val scalaTest = "3.2.19"
     val scalaCheck = "1.18.1"
-    val zio = "2.1.13"
+    val zio = "2.1.14"
     val zioHttp = "3.0.1"
     val cassandra = "4.18.1"
-    val testContainers = "0.41.4"
-    val logbackV = "1.5.12"
+    val testContainers = "0.41.5"
+    val logbackV = "1.5.16"
     val alpakka = "8.0.0"
     val fury = "0.9.0"
     val akka = "2.9.5"
     val akkaHttp = "10.6.3"
-    val gRPC = "1.68.1"
-    val googleProto = "4.28.3"
-    val chimney = "1.5.0"
-    val airframeVersion = "24.11.0"
+    val gRPC = "1.69.1"
+    val googleProto = "4.29.3"
+    val chimney = "1.6.0"
+    val airframeVersion = "24.12.2"
     val mockito = "5.14.2"
     val mockitoScala = "1.17.37"
     val cassandraPersistence = "1.2.1"
@@ -294,7 +294,7 @@ object Dependencies {
     val scalaLogging = "3.9.5"
     val AkkaManagementVersion = "1.5.2"
     val akkaGrpc = "2.4.3"
-    val tapirVersion = "1.11.9"
+    val tapirVersion = "1.11.13"
   }
   val all: Seq[ModuleID] =
     Circe.all ++ Zio.all ++ ScalaTest.all ++ ZioTest.all ++
