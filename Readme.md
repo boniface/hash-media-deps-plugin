@@ -1,4 +1,4 @@
-# Scala Project Dependencies
+# Hash Media Dependencies
 
 [![Version](https://img.shields.io/github/v/release/boniface/hash-media-deps-plugin)](https://github.com/boniface/hash-media-deps-plugin/releases)
 [![Build Status](https://img.shields.io/github/actions/workflow/status/boniface/hash-media-deps-plugin/build.yml)](https://github.com/boniface/hash-media-deps-plugin/actions)
@@ -8,8 +8,8 @@
 
 ## Overview
 
-The `hash-media-deps-plugin` is a project  designed to manage and streamline the dependencies 
-for some Scala projects I work on. It's a centralized way to define and manage dependencies, 
+The `hash-media-deps-plugin` is an SBT plugin designed to manage and streamline the dependencies 
+for media-related projects. It provides a centralized way to define and manage dependencies, 
 ensuring consistency and ease of maintenance.
 
 ## Features
@@ -21,7 +21,7 @@ ensuring consistency and ease of maintenance.
 
 ## Usage
 
-In your `build.sbt` file, you can reference the dependencies provided by the project:
+In your `build.sbt` file, you can reference the dependencies provided by the plugin:
 
 ```scala
 ThisBuild / resolvers ++= Seq(
@@ -33,20 +33,13 @@ ThisBuild / resolvers ++= Seq(
 lazy val root = (project in file("."))
   .settings(
     name := "project-name",
-    libraryDependencies += "com.github.boniface" %% "hash-media-deps-plugin" % "x.y.z")
-
-credentials += Credentials(
-  "GitHub Package Registry",
-  "maven.pkg.github.com",
-  "boniface",
-  sys.env.getOrElse("GITHUB_TOKEN", ""),
-)
-
+    libraryDependencies += "com.github.boniface" %% "hash-media-deps-plugin" % "x.y.z",
+  )
 ```
 
 ## Dependencies
 
-The project  includes a variety of dependencies, organized into different categories such as Akka, Tapir, ZIO, and more. Here are some examples:
+The plugin includes a variety of dependencies, organized into different categories such as Akka, Tapir, ZIO, and more. Here are some examples:
 
 - **Akka**:
   - `akka-actor-typed`
@@ -163,5 +156,5 @@ Contributions, well... nothing much actually, but they are welcome, anyway! Plea
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](https://opensource.org/licenses/MIT) file for details.
+This project is licensed under the MIT License. See the `LICENSE` file for details.
 ```

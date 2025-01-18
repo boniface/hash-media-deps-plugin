@@ -2,6 +2,7 @@ import sbt.*
 
 object Dependencies {
 
+  private val TestScope = Test
 
   object Circe {
     private val circeCore = "io.circe" %% "circe-core" % Version.circe
@@ -18,48 +19,44 @@ object Dependencies {
   }
 
   object ScalaTest {
-    private val scalaTest = "org.scalatest" %% "scalatest" % Version.scalaTest
+    private val scalaTest = "org.scalatest" %% "scalatest" % Version.scalaTest %
+      TestScope
     private val scalaCheck = "org.scalacheck" %% "scalacheck" %
-      Version.scalaCheck
+      Version.scalaCheck % TestScope
     private val logback = "ch.qos.logback" % "logback-classic" %
-      Version.logbackV
+      Version.logbackV % TestScope
     private val mockitoScala = "org.mockito" %% "mockito-scala" %
-      Version.mockitoScala
+      Version.mockitoScala % TestScope
     private val mockitoScalaTest = "org.mockito" %% "mockito-scala-scalatest" %
-      Version.mockitoScala
-    private val scalaCheck1_18 = "org.scalatestplus" %% "scalacheck-1-18" %
-      Version.scalaCheckPlusV
-    val all: Seq[ModuleID] = Seq(
-      scalaTest,
-      scalaCheck,
-      logback,
-      mockitoScala,
-      mockitoScalaTest,
-      scalaCheck1_18,
-    )
+      Version.mockitoScala % TestScope
+
+    val all: Seq[ModuleID] =
+      Seq(scalaTest, scalaCheck, logback, mockitoScala, mockitoScalaTest)
   }
 
   object ZioTest {
-    private val zioTest = "dev.zio" %% "zio-test" % Version.zio
-    private val zioTestSbt = "dev.zio" %% "zio-test-sbt" % Version.zio
-    private val zioMagnolia = "dev.zio" %% "zio-test-magnolia" % Version.zio
+    private val zioTest = "dev.zio" %% "zio-test" % Version.zio % TestScope
+    private val zioTestSbt = "dev.zio" %% "zio-test-sbt" % Version.zio %
+      TestScope
+    private val zioMagnolia = "dev.zio" %% "zio-test-magnolia" % Version.zio %
+      TestScope
     private val zioHttpTestKit = "dev.zio" %% "zio-http-testkit" %
-      Version.zioHttp
+      Version.zioHttp % TestScope
     val all: Seq[ModuleID] =
       Seq(zioTest, zioTestSbt, zioHttpTestKit, zioMagnolia)
   }
 
   object TestContainers {
     private val scalaTest = "com.dimafeng" %% "testcontainers-scala-scalatest" %
-      Version.testContainers
+      Version.testContainers % TestScope
     private val cassandra = "com.dimafeng" %% "testcontainers-scala-cassandra" %
-      Version.testContainers
+      Version.testContainers % TestScope
     private val kafka = "com.dimafeng" %% "testcontainers-scala-kafka" %
-      Version.testContainers
+      Version.testContainers % TestScope
     private val cockroachdb = "com.dimafeng" %%
-      "testcontainers-scala-cockroachdb" % Version.testContainers
+      "testcontainers-scala-cockroachdb" % Version.testContainers % TestScope
     private val redis = "com.dimafeng" %% "testcontainers-scala-redis" %
-      Version.testContainers
+      Version.testContainers % TestScope
     val all: Seq[ModuleID] = Seq(scalaTest, cassandra, kafka, cockroachdb, redis)
   }
 
@@ -97,7 +94,7 @@ object Dependencies {
   }
 
   object PostgresQL {
-    private val postgres = "org.postgresql" % "postgresql" % Version.postgresQLV
+    private val postgres = "org.postgresql" % "postgresql" % "42.7.5"
     val all: Seq[ModuleID] = Seq(postgres)
   }
 
@@ -193,13 +190,13 @@ object Dependencies {
 
   object AkkaTestKit {
     private val akkaTestKit = "com.typesafe.akka" %%
-      "akka-actor-testkit-typed" % Version.akka
+      "akka-actor-testkit-typed" % Version.akka % TestScope
     private val akkaStreamTestKit = "com.typesafe.akka" %%
-      "akka-stream-testkit" % Version.akka
+      "akka-stream-testkit" % Version.akka % TestScope
     private val akkaPersistenceTestKit = "com.typesafe.akka" %%
-      "akka-persistence-testkit" % Version.akka
+      "akka-persistence-testkit" % Version.akka % TestScope
     private val akkaHttpTestKit = "com.typesafe.akka" %% "akka-http-testkit" %
-      Version.akkaHttp
+      Version.akkaHttp % TestScope
     val all: Seq[ModuleID] = Seq(
       akkaTestKit,
       akkaStreamTestKit,
@@ -223,8 +220,7 @@ object Dependencies {
       "tapir-swagger-ui-bundle" % Version.tapirVersion
     private val tapirJsonCirce = "com.softwaremill.sttp.tapir" %%
       "tapir-json-circe" % Version.tapirVersion
-    private val emberServer = "org.http4s" %% "http4s-ember-server" %
-      Version.http4sV
+    private val emberServer = "org.http4s" %% "http4s-ember-server" % "0.23.30"
     val all: Seq[ModuleID] = Seq(
       tapirCore,
       tapirHttp4sServer,
@@ -239,9 +235,9 @@ object Dependencies {
 
   object TapirTest {
     private val tapirSttpStubServer = "com.softwaremill.sttp.tapir" %%
-      "tapir-sttp-stub-server" % Version.tapirVersion
+      "tapir-sttp-stub-server" % Version.tapirVersion % TestScope
     private val tapirSttpClient = "com.softwaremill.sttp.client3" %% "circe" %
-      "3.10.1"
+      "3.10.2" % TestScope
     val all: Seq[ModuleID] = Seq(tapirSttpStubServer, tapirSttpClient)
   }
 
@@ -270,40 +266,25 @@ object Dependencies {
     val all: Seq[ModuleID] = Seq(jsoup, romeTools)
   }
 
-  object ScalaPb {
-    private val scalapb = "com.thesamet.scalapb" %% "scalapb-runtime" %
-      Version.scalaPbV
-    private val scalapbGrpc = "com.thesamet.scalapb" %% "scalapb-runtime-grpc" %
-      Version.scalaPbV
-    private val scalapbJson4s = "com.thesamet.scalapb" %% "scalapb-json4s" %
-      Version.scalaPBJsonV
-    val all: Seq[ModuleID] = Seq(scalapb, scalapbGrpc, scalapbJson4s)
-  }
-
   object Version {
-    val scalaPbV = "0.11.17"
-    val scalaPBJsonV = "0.12.1"
-    val scalaCheckPlusV = "3.2.19.0"
-    val http4sV = "0.23.29"
-    val postgresQLV = "42.7.4"
-    val jsoupV = "1.18.2"
+    val jsoupV = "1.18.3"
     val romeToolsV = "2.1.0"
     val circe = "0.14.10"
     val scalaTest = "3.2.19"
     val scalaCheck = "1.18.1"
-    val zio = "2.1.13"
+    val zio = "2.1.14"
     val zioHttp = "3.0.1"
     val cassandra = "4.18.1"
-    val testContainers = "0.41.4"
-    val logbackV = "1.5.12"
+    val testContainers = "0.41.5"
+    val logbackV = "1.5.16"
     val alpakka = "8.0.0"
     val fury = "0.9.0"
     val akka = "2.9.5"
     val akkaHttp = "10.6.3"
-    val gRPC = "1.68.2"
-    val googleProto = "4.29.0"
-    val chimney = "1.5.0"
-    val airframeVersion = "24.11.0"
+    val gRPC = "1.69.1"
+    val googleProto = "4.29.3"
+    val chimney = "1.6.0"
+    val airframeVersion = "24.12.2"
     val mockito = "5.14.2"
     val mockitoScala = "1.17.37"
     val cassandraPersistence = "1.2.1"
@@ -313,11 +294,12 @@ object Dependencies {
     val scalaLogging = "3.9.5"
     val AkkaManagementVersion = "1.5.2"
     val akkaGrpc = "2.4.3"
-    val tapirVersion = "1.11.9"
+    val tapirVersion = "1.11.13"
   }
-  val all: Seq[ModuleID] = Circe.all ++ Zio.all ++ ScalaTest.all ++
-    ZioTest.all ++ TestContainers.all ++ Airframe.all ++ Logging.all ++
-    Cassandra.all ++ PostgresQL.all ++ Chimney.all ++ Akka.all ++
-    AkkaProjection.all ++ AkkaHttp.all ++ AkkaTestKit.all ++ TapirHttp4s.all ++
-    TapirTest.all ++ Grpc.all ++ JsoupRomeFeed.all ++ ScalaPb.all
+  val all: Seq[ModuleID] =
+    Circe.all ++ Zio.all ++ ScalaTest.all ++ ZioTest.all ++
+      TestContainers.all ++ Airframe.all ++ Logging.all ++ Cassandra.all ++
+      PostgresQL.all ++ Chimney.all ++ Akka.all ++ AkkaProjection.all ++
+      AkkaHttp.all ++ AkkaTestKit.all ++ TapirHttp4s.all ++ TapirTest.all ++
+      Grpc.all ++ JsoupRomeFeed.all
 }
