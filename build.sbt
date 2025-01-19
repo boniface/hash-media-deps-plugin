@@ -1,7 +1,7 @@
 import sbt.Keys.excludeDependencies
 
 ThisBuild / scalaVersion := "2.13.16"
-ThisBuild / version := "0.0.12"
+ThisBuild / version := "0.0.13"
 ThisBuild / organization := "com.github.boniface"
 ThisBuild / organizationName := "boniface"
 ThisBuild / versionScheme := Some("early-semver")
