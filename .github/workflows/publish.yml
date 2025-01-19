@@ -1,0 +1,68 @@
+name: Auto Tag, Publish, and Release
+
+on:
+  push:
+    paths:
+      - "build.sbt" # Trigger when build.sbt changes
+
+jobs:
+  auto-tag-publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Read the version from build.sbt
+      - name: Read version from build.sbt
+        id: get_version
+        run: |
+          version=$(grep '^version' build.sbt | sed -E "s/version\\s*:=\\s*\"([^\"]+)\"/\\1/")
+          echo "version=$version" >> $GITHUB_ENV
+
+      # Step 3: Create a tag for the new version
+      - name: Create tag
+        run: |
+          git config user.name "${{ github.actor }}"
+          git config user.email "${{ github.actor }}@users.noreply.github.com"
+          git tag v${{ env.version }}
+          git push origin v${{ env.version }}
+
+      # Step 4: Set up Java (required for sbt)
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: temurin
+          java-version: 17 # Adjust to your Java version
+
+      # Step 5: Cache sbt dependencies
+      - name: Cache sbt
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.sbt
+            ~/.ivy2/cache
+            ~/.coursier
+          key: ${{ runner.os }}-sbt-${{ hashFiles('**/*.sbt') }}-${{ hashFiles('**/build.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-sbt-
+
+      # Step 6: Publish the artifact to GitHub Maven
+      - name: Publish to GitHub Maven
+        run: sbt publish
+        env:
+          GITHUB_ACTOR: ${{ github.actor }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # Step 7: Create a GitHub Release
+      - name: Create GitHub Release
+        uses: actions/create-release@v1
+        with:
+          tag_name: v${{ env.version }}
+          release_name: "Release v${{ env.version }}"
+          body: "Automated release for version v${{ env.version }}"
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
