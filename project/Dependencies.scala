@@ -237,7 +237,7 @@ object Dependencies {
     private val tapirSttpStubServer = "com.softwaremill.sttp.tapir" %%
       "tapir-sttp-stub-server" % Version.tapirVersion % TestScope
     private val tapirSttpClient = "com.softwaremill.sttp.client3" %% "circe" %
-      "3.10.2" % TestScope
+      "3.10.3" % TestScope
     val all: Seq[ModuleID] = Seq(tapirSttpStubServer, tapirSttpClient)
   }
 
@@ -267,34 +267,34 @@ object Dependencies {
   }
 
   object Version {
-    val jsoupV = "1.18.3"
+    val jsoupV = "1.19.1"
     val romeToolsV = "2.1.0"
-    val circe = "0.14.10"
+    val circe = "0.14.12"
     val scalaTest = "3.2.19"
     val scalaCheck = "1.18.1"
-    val zio = "2.1.14"
-    val zioHttp = "3.0.1"
-    val cassandra = "4.18.1"
-    val testContainers = "0.41.5"
-    val logbackV = "1.5.16"
+    val zio = "2.1.16"
+    val zioHttp = "3.1.0"
+    val cassandra = "4.19.0"
+    val testContainers = "0.43.0"
+    val logbackV = "1.5.18"
     val alpakka = "8.0.0"
-    val fury = "0.9.0"
+    val fury = "0.10.0"
     val akka = "2.9.5"
     val akkaHttp = "10.6.3"
-    val gRPC = "1.69.1"
-    val googleProto = "4.29.3"
-    val chimney = "1.6.0"
-    val airframeVersion = "24.12.2"
+    val gRPC = "1.71.0"
+    val googleProto = "4.30.1"
+    val chimney = "1.7.3"
+    val airframeVersion = "2025.1.8"
     val mockito = "5.14.2"
     val mockitoScala = "1.17.37"
     val cassandraPersistence = "1.2.1"
     val akkaProjection = "1.5.4"
     val logstash = "8.0"
-    val julToSl4j = "2.0.16"
+    val julToSl4j = "2.0.17"
     val scalaLogging = "3.9.5"
     val AkkaManagementVersion = "1.5.2"
     val akkaGrpc = "2.4.3"
-    val tapirVersion = "1.11.13"
+    val tapirVersion = "1.11.19"
   }
   val all: Seq[ModuleID] =
     Circe.all ++ Zio.all ++ ScalaTest.all ++ ZioTest.all ++
